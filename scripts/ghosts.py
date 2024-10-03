@@ -14,10 +14,10 @@ class Ghost(Entity):
         self.hunting_mode = False
         self.sprites = GhostSprites(self)
 
-
     def ghost_move(self):
         if self.hunting_mode:
-            self.current_direction = DirectionMethods.bfs_to_pacman(self, self.grid, self.pacman)
+            self.current_direction = DirectionMethods.bfs_to_pacman(self, self.grid,
+                                                                    (self.pacman.x, self.pacman.y))
         else:
             self.current_direction = DirectionMethods.random_move(self, self.grid)
         self.set_move()
@@ -45,9 +45,3 @@ class Ghost(Entity):
     def checkHuntingMode(self, cur_pellets_quantity, max_pellets_quantity):
         if cur_pellets_quantity < 0.75 * max_pellets_quantity:
             self.hunting_mode = True
-
-    # def startSpawn(self):
-    #     self.mode.setSpawnMode()
-    #     if self.mode.current == SPAWN:
-    #         self.setSpeed(150)
-    #         self.spawn()

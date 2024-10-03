@@ -75,8 +75,14 @@ class GameController:
         self.pacman = Pacman(pacman_homepoint[0], pacman_homepoint[1], maze)
         self.pellets = PelletGroup(maze, pacman_homepoint)
 
-        ghost = Ghost(ghosts_homepoint, maze, self.pacman, PINKY, 3)
-        self.ghosts.append(ghost)
+        ghost_pinky = Ghost(ghosts_homepoint, maze, self.pacman, PINKY, 3)
+        self.ghosts.append(ghost_pinky)
+
+        ghost_blinky = Ghost(ghosts_homepoint, maze, self.pacman, BLINKY, 5)
+        self.ghosts.append(ghost_blinky)
+
+        ghost_inky = Ghost(ghosts_homepoint, maze, self.pacman, INKY, 7)
+        self.ghosts.append(ghost_inky)
 
         self.pacman.draw(self.screen)
         for ghost in self.ghosts:

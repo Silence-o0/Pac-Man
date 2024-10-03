@@ -46,11 +46,10 @@ class DirectionMethods:
         return new_direction
 
     @staticmethod
-    def bfs_to_pacman(ghost, grid, pacman, visited=None):
+    def bfs_to_pacman(ghost, grid, pacman_position, visited=None):
         if visited is None:
             visited = set()
         ghost_position = (ghost.x, ghost.y)
-        pacman_position = (pacman.x, pacman.y)
 
         if ghost_position != pacman_position:
             queue = [(ghost_position, None)]
