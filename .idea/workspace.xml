@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" name="Changes" comment="Init commit">
-      <change afterPath="$PROJECT_DIR$/scripts/directions_algorithms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mazes/mazetest.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mazes/originalMaze.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mazes/originalMaze_rotation.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/fruit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ghosts.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ghosts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/modes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/nodes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/pacman.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pacman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/pauser.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pauser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/pellets.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pellets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sprites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/text.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/text.py" afterDir="false" />
-    </list>
+    <list default="true" id="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" name="Changes" comment="Simple pacman with one ghost" />
     <list id="223820b3-e64e-4a98-a5bb-3ac1343b9b88" name="Changes by antos07" comment="">
       <change beforePath="$PROJECT_DIR$/scripts/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/maze.py" afterDir="false" />
     </list>
@@ -42,20 +22,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/scripts/maze.py">
-      <ranges>
-        <range start1="2" end1="6" start2="2" end2="4" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-        <range start1="7" end1="8" start2="5" end2="5" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-        <range start1="12" end1="15" start2="9" end2="12" changelist="223820b3-e64e-4a98-a5bb-3ac1343b9b88" />
-        <range start1="17" end1="17" start2="14" end2="21" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-        <range start1="18" end1="19" start2="22" end2="23" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-        <range start1="21" end1="47" start2="25" end2="27" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-        <range start1="67" end1="67" start2="47" end2="80" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-        <range start1="68" end1="78" start2="81" end2="188" changelist="01debfd2-23c0-4ca3-8a8b-9e0ccd1867f7" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -178,7 +144,7 @@
       <workItem from="1727699365463" duration="14664000" />
       <workItem from="1727816261479" duration="1478000" />
       <workItem from="1727894759382" duration="8524000" />
-      <workItem from="1727965585686" duration="10193000" />
+      <workItem from="1727965585686" duration="10509000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <option name="closed" value="true" />
@@ -188,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727473775045</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Simple pacman with one ghost">
+      <option name="closed" value="true" />
+      <created>1727979783872</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727979783872</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,13 +170,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init commit" />
+    <MESSAGE value="Simple pacman with one ghost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simple pacman with one ghost" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Pac_Man$nodes.coverage" NAME="nodes Coverage Results" MODIFIED="1725629259596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Pac_Man$ghosts.coverage" NAME="ghosts Coverage Results" MODIFIED="1725475568905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Pac_Man$run.coverage" NAME="run Coverage Results" MODIFIED="1725304437115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Pac_Man$main.coverage" NAME="main Coverage Results" MODIFIED="1727979592988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Pac_Man$main.coverage" NAME="main Coverage Results" MODIFIED="1727979726334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Pac_Man$sprites.coverage" NAME="sprites Coverage Results" MODIFIED="1725802707308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>
