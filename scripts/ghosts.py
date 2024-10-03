@@ -1,173 +1,53 @@
-import pygame
-from pygame.locals import *
-from scripts.vector import Vector2
-from scripts.constants import *
+from scripts.directions_algorithms import DirectionMethods
 from scripts.entity import Entity
-from scripts.modes import ModeController
 from scripts.sprites import GhostSprites
 
+
 class Ghost(Entity):
-    def __init__(self, node, pacman=None, blinky=None):
-        Entity.__init__(self, node)
-        self.name = GHOST
-        self.points = 200
-        self.goal = Vector2()
-        self.directionMethod = self.goalDirection
+    def __init__(self, home, maze, pacman=None, name=None, time=0):
+        super().__init__(home[0], home[1], maze)
+        self.name = name
+        self.pacman_following = False
         self.pacman = pacman
-        self.mode = ModeController(self)
-        self.blinky = blinky
-        self.homeNode = node
-        # self.sprites = GhostSprites(self)
-
-    def reset(self):
-        Entity.reset(self)
-        self.points = 200
-        self.directionMethod = self.goalDirection
-
-    def update(self, dt):
-        self.sprites.update(dt)
-        self.mode.update(dt)
-        if self.mode.current is SCATTER:
-            self.scatter()
-        elif self.mode.current is CHASE:
-            self.chase()
-        Entity.update(self, dt)
-
-    def scatter(self):
-        self.goal = Vector2()
-
-    def chase(self):
-        self.goal = self.pacman.position
-
-    def startFreight(self):
-        self.mode.setFreightMode()
-        if self.mode.current == FREIGHT:
-            self.setSpeed(50)
-            self.directionMethod = self.randomDirection
-
-    def normalMode(self):
-        self.setSpeed(100)
-        self.directionMethod = self.goalDirection
-        self.homeNode.denyAccess(DOWN, self)
-
-    def spawn(self):
-        self.goal = self.spawnNode.position
-
-    def setSpawnNode(self, node):
-        self.spawnNode = node
-
-    def startSpawn(self):
-        self.mode.setSpawnMode()
-        if self.mode.current == SPAWN:
-            self.setSpeed(150)
-            self.directionMethod = self.goalDirection
-            self.spawn()
-
-
-class Blinky(Ghost):
-    def __init__(self, node, pacman=None, blinky=None):
-        Ghost.__init__(self, node, pacman, blinky)
-        self.name = BLINKY
-        self.color = RED
+        self.speed = 50
+        self.start_time = time
+        self.hunting_mode = False
         self.sprites = GhostSprites(self)
 
 
-class Pinky(Ghost):
-    def __init__(self, node, pacman=None, blinky=None):
-        Ghost.__init__(self, node, pacman, blinky)
-        self.name = PINKY
-        self.color = PINK
-        self.sprites = GhostSprites(self)
-
-    def scatter(self):
-        self.goal = Vector2(TILEWIDTH * NCOLS, 0)
-
-    def chase(self):
-        self.goal = self.pacman.position + self.pacman.directions[self.pacman.direction] * TILEWIDTH * 4
-
-
-class Inky(Ghost):
-    def __init__(self, node, pacman=None, blinky=None):
-        Ghost.__init__(self, node, pacman, blinky)
-        self.name = INKY
-        self.color = TEAL
-        self.sprites = GhostSprites(self)
-
-    def scatter(self):
-        self.goal = Vector2(TILEWIDTH * NCOLS, TILEHEIGHT * NROWS)
-
-    def chase(self):
-        vec1 = self.pacman.position + self.pacman.directions[self.pacman.direction] * TILEWIDTH * 2
-        vec2 = (vec1 - self.blinky.position) * 2
-        self.goal = self.blinky.position + vec2
-
-
-class Clyde(Ghost):
-    def __init__(self, node, pacman=None, blinky=None):
-        Ghost.__init__(self, node, pacman, blinky)
-        self.name = CLYDE
-        self.color = ORANGE
-        self.sprites = GhostSprites(self)
-
-    def scatter(self):
-        self.goal = Vector2(0, TILEHEIGHT * NROWS)
-
-    def chase(self):
-        dist = self.pacman.position - self.position
-        distSquared = dist.magnitudeSquared()
-        if distSquared <= (TILEWIDTH * 8) ** 2:
-            self.scatter()
+    def ghost_move(self):
+        if self.hunting_mode:
+            self.current_direction = DirectionMethods.bfs_to_pacman(self, self.grid, self.pacman)
         else:
-            self.goal = self.pacman.position + self.pacman.directions[self.pacman.direction] * TILEWIDTH * 4
-
-
-class GhostGroup:
-    def __init__(self, node, pacman):
-        # self.blinky = Blinky(node, pacman)
-        self.pinky = Pinky(node, pacman)
-        # self.inky = Inky(node, pacman, self.blinky)
-        # self.clyde = Clyde(node, pacman)
-        # self.ghosts = [self.blinky, self.pinky, self.inky, self.clyde]
-        self.ghosts = [self.pinky]
-
-
-    def __iter__(self):
-        return iter(self.ghosts)
-
+            self.current_direction = DirectionMethods.random_move(self, self.grid)
+        self.set_move()
 
     def update(self, dt):
-        for ghost in self:
-            ghost.update(dt)
+        if self.current_direction == "STOP":
+            self.ghost_move()
 
-    def startFreight(self):
-        for ghost in self:
-            ghost.startFreight()
-        self.resetPoints()
+        if (self.x_pixels, self.y_pixels) != self.goal_point:
+            diff = self.speed * dt
+            if abs(self.goal_point[0] - self.x_pixels) < diff + 0.5 and abs(self.goal_point[1] - self.y_pixels) < diff + 0.5:
+                self.x_pixels = self.goal_point[0]
+                self.y_pixels = self.goal_point[1]
+                self.x = self.goal_cell[0]
+                self.y = self.goal_cell[1]
+                self.ghost_move()
+            else:
+                x_displace = self.goal_cell[0] - self.x
+                y_displace = self.goal_cell[1] - self.y
+                self.x_pixels = self.x_pixels + (self.speed * dt) * x_displace
+                self.y_pixels = self.y_pixels + (self.speed * dt) * y_displace
 
-    def setSpawnNode(self, node):
-        for ghost in self:
-            ghost.setSpawnNode(node)
+        self.sprites.update(dt)
 
-    def updatePoints(self):
-        for ghost in self:
-            ghost.points *= 2
+    def checkHuntingMode(self, cur_pellets_quantity, max_pellets_quantity):
+        if cur_pellets_quantity < 0.75 * max_pellets_quantity:
+            self.hunting_mode = True
 
-    def resetPoints(self):
-        for ghost in self:
-            ghost.points = 200
-
-    def reset(self):
-        for ghost in self:
-            ghost.reset()
-
-    def hide(self):
-        for ghost in self:
-            ghost.visible = False
-
-    def show(self):
-        for ghost in self:
-            ghost.visible = True
-
-    def render(self, surf):
-        for ghost in self:
-            ghost.render(surf)
+    # def startSpawn(self):
+    #     self.mode.setSpawnMode()
+    #     if self.mode.current == SPAWN:
+    #         self.setSpeed(150)
+    #         self.spawn()

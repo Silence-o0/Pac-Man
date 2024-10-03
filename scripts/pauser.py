@@ -13,9 +13,11 @@ class Pause:
                 self.paused = False
                 self.pauseTime = None
                 return self.func
+        else:
+            self.timer += dt
         return None
 
-    def setPause(self, playerPaused=False, pauseTime=None, func=None):
+    def setPause(self, pauseTime=None, func=None, playerPaused = False):
         self.timer = 0
         self.func = func
         self.pauseTime = pauseTime

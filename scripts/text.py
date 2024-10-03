@@ -61,9 +61,9 @@ class TextGroup(object):
         size = TOP_INDENT // 4
         self.alltext[SCORETXT] = Text("0".zfill(8), WHITE, 0, TILEHEIGHT//2, size)
         self.alltext[LEVELTXT] = Text(str(1).zfill(3), WHITE, LEFT_INDENT + NCOLS * TILEWIDTH, TILEHEIGHT//2, size)
-        self.alltext[READYTXT] = Text("READY!", YELLOW, 4.3 * TILEWIDTH, 4.3 * TILEHEIGHT, 4 * size, visible=False)
-        self.alltext[PAUSETXT] = Text("PAUSED!", YELLOW, 4 * TILEWIDTH, 4.3 * TILEHEIGHT, 4 * size, visible=False)
-        self.alltext[GAMEOVERTXT] = Text("GAMEOVER!", YELLOW, 3.8 * TILEWIDTH, 4.3 * TILEHEIGHT, 4 * size, visible=False)
+        self.alltext[READYTXT] = Text("READY!", YELLOW, 10 * TILEWIDTH, 8 * TILEHEIGHT, 4 * size, visible=False)
+        self.alltext[PAUSETXT] = Text("PAUSED!", YELLOW, 9.5 * TILEWIDTH, 8 * TILEHEIGHT, 4 * size, visible=False)
+        self.alltext[GAMEOVERTXT] = Text("GAMEOVER!", YELLOW, 8 * TILEWIDTH, 8 * TILEHEIGHT, 4 * size, visible=False)
         self.addText("SCORE", WHITE, 0, 0, size)
         self.addText("LEVEL", WHITE, LEFT_INDENT + NCOLS * TILEWIDTH, 0, size)
 
